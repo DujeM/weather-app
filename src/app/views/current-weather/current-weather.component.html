@@ -1,1 +1,31 @@
-<p>current-weather works!</p>
+<ng-container *ngIf="weather$ | async as weather; else error">
+  <div class="card">
+    <div>
+      <span>Location name</span>
+      <p>{{ weather.name }}</p>
+    </div>
+    <div>
+      <span>Temperature</span>
+      <p>{{ weather.main.temp }} &deg;C</p>
+    </div>
+    <div>
+      <span>Feels like</span>
+      <p>{{ weather.main.feels_like }} &deg;C</p>
+    </div>
+    <div>
+      <span>Weather conditions</span>
+      <ng-container *ngFor="let cond of weather.weather">
+        <p>{{ cond.main }}</p>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #error>
+  <ng-container *ngIf="error$ | async as err; else loading">
+    {{ err.message }}
+  </ng-container>
+</ng-template>
+
+<ng-template #loading>Loading...</ng-template>
+

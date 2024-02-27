@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.card {
+  padding: 20px;
+  background-color: #1f2937;
+  color: #fff;
+  height: 300px;
+  width: 300px;
+  border-radius: 6px;
+
+  & span {
+    color: #9ca3af;
+  }
+
+  & div {
+    border-bottom: 1px solid #9ca3af;
+    margin-bottom: 5px;
+  }
+}
