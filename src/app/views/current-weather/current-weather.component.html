@@ -23,9 +23,15 @@
 
 <ng-template #error>
   <ng-container *ngIf="error$ | async as err; else loading">
-    {{ err.message }}
+    <div class="box">
+      <h2 class="box__error">{{ err.message }}</h2>
+    </div>
   </ng-container>
 </ng-template>
 
-<ng-template #loading>Loading...</ng-template>
+<ng-template #loading>
+  <div class="box">
+    <h2>Loading...</h2>
+  </div>
+</ng-template>
 

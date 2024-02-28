@@ -13,6 +13,7 @@ import {
 import { Forecast, Weather } from '../../core/models/weather.model';
 
 const DAY_LIMIT = 4;
+const INDEX_NOT_FOUND = -1;
 
 @Component({
   selector: 'app-forecast',
@@ -63,22 +64,21 @@ export class ForecastComponent implements OnInit, OnDestroy {
   }
 
   splitForecastIntoDays(arr: Weather[]) {
-    this.forecastByDays = arr.reduce((result, obj) => {
-      const index = result.findIndex(
+    this.forecastByDays = arr.reduce((forecastByDays, obj) => {
+      const index = forecastByDays.findIndex(
         (item) =>
-          item.length > 0 &&
           new Date(item[0].dt_txt).getDay() === new Date(obj.dt_txt).getDay()
       );
 
-      if (index === -1) {
-        if (result.length !== DAY_LIMIT) {
-          result.push([obj]);
-        }
-      } else {
-        result[index].push(obj);
+      if (index === INDEX_NOT_FOUND && forecastByDays.length < DAY_LIMIT) {
+        forecastByDays.push([obj]);
       }
 
-      return result;
+      if (index !== INDEX_NOT_FOUND) {
+        forecastByDays[index].push(obj);
+      }
+
+      return forecastByDays;
     }, [] as Weather[][]);
   }
 

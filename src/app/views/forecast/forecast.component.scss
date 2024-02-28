@@ -20,10 +20,9 @@
   padding: 20px;
   background-color: #1f2937;
   color: #fff;
-  height: 300px;
-  width: 300px;
+  min-height: 300px;
+  min-width: 300px;
   border-radius: 6px;
-  transition: .2s ease;
   cursor: pointer;
 
   span {
@@ -79,5 +78,15 @@
       border-bottom: 1px solid #9ca3af;
       margin-bottom: 5px;
     }
+  }
+}
+
+.box {
+  padding: 20px;
+  background-color: #1f2937;
+  border-radius: 6px;
+
+  &__error {
+    color: #f78c79;
   }
 }
