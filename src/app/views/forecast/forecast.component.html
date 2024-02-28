@@ -1,0 +1,30 @@
+<ng-container *ngIf="forecastByDays.length; else error">
+  <div class="card__wrapper">
+    <div class="card" *ngFor="let weather of forecastByDays; let i = index">
+      <div>
+        <h2>{{ weather[0].dt_txt | GetDateDay }}</h2>
+      </div>
+      <div>
+        <span>Minimum temperature</span>
+        <p>{{ getMinimumTemperature(i) }} &deg;C</p>
+      </div>
+      <div>
+        <span>Maximum temperature</span>
+        <p>{{ getMaximumtemperature(i) }} &deg;C</p>
+      </div>
+      <div>
+        <span>Average temperature</span>
+        <p>{{ getAverageTemperature(i) }} &deg;C</p>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #error>
+  <ng-container *ngIf="error$ | async as err; else loading">
+    {{ err.message }}
+  </ng-container>
+</ng-template>
+
+<ng-template #loading>Loading...</ng-template>
+

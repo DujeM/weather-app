@@ -4,6 +4,7 @@ export interface Weather {
   cod: number;
   coord: Coord;
   dt: number;
+  dt_txt: string;
   id: number;
   main: Main;
   name: string;
@@ -14,6 +15,25 @@ export interface Weather {
   visibility: number;
   weather: Conditions[];
   wind: Wind;
+}
+
+export interface Forecast {
+  city: City;
+  cnt: number;
+  cod: string;
+  list: Weather[];
+  message: number;
+}
+
+export interface City {
+  id: number;
+  name: string;
+  country: string;
+  coord: Coord;
+  population: number;
+  sunrise: number;
+  sunset: number;
+  timezone: number;
 }
 
 export interface Clouds {

@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.card__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  padding: 20px;
+  background-color: #1f2937;
+  color: #fff;
+  height: 300px;
+  width: 300px;
+  border-radius: 6px;
+  transition: .2s ease;
+  cursor: pointer;
+
+  & span {
+    color: #9ca3af;
+  }
+
+  & div {
+    border-bottom: 1px solid #9ca3af;
+    margin-bottom: 5px;
+  }
+
+  &:hover {
+    border: 1px solid #fff;
+  }
+}

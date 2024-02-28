@@ -18,11 +18,18 @@ body {
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 30px;
   color: #fff;
   background-color: #1f2937;
 
   & h1 {
     margin: 0;
+  }
+
+  & span {
+    cursor: pointer;
   }
 }
