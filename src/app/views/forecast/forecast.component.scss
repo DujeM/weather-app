@@ -26,16 +26,58 @@
   transition: .2s ease;
   cursor: pointer;
 
-  & span {
+  span {
     color: #9ca3af;
   }
 
-  & div {
+  div {
     border-bottom: 1px solid #9ca3af;
     margin-bottom: 5px;
   }
 
   &:hover {
     border: 1px solid #fff;
+  }
+}
+
+
+.forecast {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+  background: #1f2937;
+  border-radius: 6px;
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__card {
+    border: 1px solid #9ca3af;
+    padding: 20px;
+    border-radius: 6px;
+
+    h3 {
+      margin: 0 0 15px 0;
+      text-align: center;
+    }
+
+    span {
+      color: #9ca3af;
+    }
+
+    p {
+      margin: 5px 0px;
+    }
+
+    div {
+      border-bottom: 1px solid #9ca3af;
+      margin-bottom: 5px;
+    }
   }
 }

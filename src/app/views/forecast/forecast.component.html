@@ -1,6 +1,6 @@
 <ng-container *ngIf="forecastByDays.length; else error">
   <div class="card__wrapper">
-    <div class="card" *ngFor="let weather of forecastByDays; let i = index">
+    <div class="card" *ngFor="let weather of forecastByDays; let i = index" (click)="selectedForecast = weather">
       <div>
         <h2>{{ weather[0].dt_txt | GetDateDay }}</h2>
       </div>
@@ -28,3 +28,25 @@
 
 <ng-template #loading>Loading...</ng-template>
 
+<div class="forecast" *ngIf="selectedForecast.length">
+  <h2>{{ selectedForecast[0].dt_txt | GetDateDay }} hourly forecast</h2>
+  <div class="forecast__cards">
+    <div class="forecast__card" *ngFor="let weather of selectedForecast">
+      <h3>{{ weather.dt_txt | GetDateHours }}</h3>
+      <div>
+        <span>Temperature</span>
+        <p>{{ weather.main.temp }} &deg;C</p>
+      </div>
+      <div>
+        <span>Conditions</span>
+        <ng-container *ngFor="let cond of weather.weather">
+          <p>{{ cond.main }}</p>
+        </ng-container>
+      </div>
+      <div>
+        <span>Wind speed</span>
+        <p>{{ weather.wind.speed }}</p>
+      </div>
+    </div>
+  </div>
+</div>

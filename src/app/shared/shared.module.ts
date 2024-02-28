@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GetDateDay } from './pipes';
+import { GetDateDay, GetDateHours } from './pipes';
 
 @NgModule({
-  declarations: [GetDateDay],
+  declarations: [GetDateDay, GetDateHours],
   imports: [CommonModule],
-  exports: [GetDateDay],
+  exports: [GetDateDay, GetDateHours],
 })
 export class SharedModule {}

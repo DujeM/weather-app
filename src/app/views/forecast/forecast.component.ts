@@ -24,6 +24,7 @@ export class ForecastComponent implements OnInit, OnDestroy {
   error$ = new Observable<GeolocationPositionError>();
   forecast!: Forecast;
   forecastByDays: Weather[][] = [];
+  selectedForecast: Weather[] = [];
 
   constructor(
     private weatherService: WeatherService,
@@ -63,27 +64,22 @@ export class ForecastComponent implements OnInit, OnDestroy {
 
   splitForecastIntoDays(arr: Weather[]) {
     this.forecastByDays = arr.reduce((result, obj) => {
-      // Find the index of the array corresponding to the date
       const index = result.findIndex(
         (item) =>
           item.length > 0 &&
           new Date(item[0].dt_txt).getDay() === new Date(obj.dt_txt).getDay()
       );
 
-      // If date not found, create a new array and push the object
       if (index === -1) {
         if (result.length !== DAY_LIMIT) {
           result.push([obj]);
         }
       } else {
-        // If date found, push the object to the existing array
         result[index].push(obj);
       }
 
       return result;
     }, [] as Weather[][]);
-
-    console.log(this.forecastByDays);
   }
 
   getMinimumTemperature(index: number) {
