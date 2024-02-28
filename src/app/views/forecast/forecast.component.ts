@@ -64,18 +64,19 @@ export class ForecastComponent implements OnInit, OnDestroy {
   }
 
   splitForecastIntoDays(arr: Weather[]) {
-    this.forecastByDays = arr.reduce((forecastByDays, obj) => {
+    this.forecastByDays = arr.reduce((forecastByDays, weather) => {
       const index = forecastByDays.findIndex(
-        (item) =>
-          new Date(item[0].dt_txt).getDay() === new Date(obj.dt_txt).getDay()
+        (weatherList) =>
+          new Date(weatherList[0].dt_txt).getDay() ===
+          new Date(weather.dt_txt).getDay()
       );
 
       if (index === INDEX_NOT_FOUND && forecastByDays.length < DAY_LIMIT) {
-        forecastByDays.push([obj]);
+        forecastByDays.push([weather]);
       }
 
       if (index !== INDEX_NOT_FOUND) {
-        forecastByDays[index].push(obj);
+        forecastByDays[index].push(weather);
       }
 
       return forecastByDays;
@@ -84,14 +85,14 @@ export class ForecastComponent implements OnInit, OnDestroy {
 
   getMinimumTemperature(index: number) {
     return this.forecastByDays[index].reduce(
-      (min, obj) => (obj.main.temp < min ? obj.main.temp : min),
+      (min, weather) => (weather.main.temp < min ? weather.main.temp : min),
       this.forecastByDays[index][0].main.temp
     );
   }
 
   getMaximumtemperature(index: number) {
     return this.forecastByDays[index].reduce(
-      (max, obj) => (obj.main.temp > max ? obj.main.temp : max),
+      (max, weather) => (weather.main.temp > max ? weather.main.temp : max),
       this.forecastByDays[index][0].main.temp
     );
   }
@@ -99,7 +100,7 @@ export class ForecastComponent implements OnInit, OnDestroy {
   getAverageTemperature(index: number) {
     return (
       this.forecastByDays[index].reduce(
-        (total, obj) => (total += obj.main.temp),
+        (total, weather) => (total += weather.main.temp),
         this.forecastByDays[index][0].main.temp
       ) / this.forecastByDays[index].length
     ).toFixed(2);
