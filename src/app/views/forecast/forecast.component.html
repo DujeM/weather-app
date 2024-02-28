@@ -2,9 +2,7 @@
   <h2>{{ forecast.city.name }}, 4 days weather forecast</h2>
   <div class="card__wrapper">
     <div class="card" *ngFor="let weather of forecastByDays; let i = index" (click)="selectedForecast = weather">
-      <div>
-        <h2>{{ weather[0].dt_txt | GetDateDay }}</h2>
-      </div>
+      <h2>{{ weather[0].dt_txt | GetDateDay }}</h2>
       <div>
         <span>Minimum temperature</span>
         <p>{{ getMinimumTemperature(i) }} &deg;C</p>
